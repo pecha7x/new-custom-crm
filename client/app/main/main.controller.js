@@ -16,7 +16,7 @@
         });
     }
 
-    addThing() {
+    addThing(user, pass) {
       if (this.newThing) {
         this.$http.post('/api/things', {
           name: this.newThing

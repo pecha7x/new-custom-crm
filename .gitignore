@@ -9,4 +9,3 @@ dist
 npm-debug.log
 coverage
 .idea/
-dev.sqlite

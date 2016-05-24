@@ -1,26 +1,49 @@
 'use strict';
 
-(function() {
+class AdminController {
+  constructor(User, $http) {
+    // Use the User $resource to fetch all users
+    this.users = User.query();
+    this.$http = $http;
+  }
 
-  class AdminController {
-    constructor(User) {
-      // Use the User $resource to fetch all users
-      this.users = User.query();
-    }
+  delete(user) {
+  //  user.$remove();
+    this.users.splice(this.users.indexOf(user), 1);
+    this.$http.delete('/api/users/'+user._id, user.role, {user});
+  }
 
-    delete(user) {
-      user.$remove();
-      this.users.splice(this.users.indexOf(user), 1);
-    }
+  create(form){
+    this.submitted = true;
+    
+    if (form.$valid) {
+      this.$http.post('/api/users', {
+        name: form.name.$$lastCommittedViewValue,
+        email: form.email.$$lastCommittedViewValue,
+        password: form.password.$$lastCommittedViewValue
+      })
+      .then(() => {
+          // Account created, redirect to home
+          this.users.push({ name: form.name.$$lastCommittedViewValue,
+                            email: form.email.$$lastCommittedViewValue
+          });
+      })
+      .catch(err => {
+          err = err.data;
+          this.errors = {};
 
-    create(form){
-      this.users.push({ name: form.role.$$lastCommittedViewValue,
-                        email: form.email.$$lastCommittedViewValue
+          // Update validity of form fields that match the sequelize errors
+          if (err.name) {
+            angular.forEach(err.fields, field => {
+              form[field].$setValidity('mongoose', false);
+              this.errors[field] = err.message;
+            });
+          }
       });
-
     }
   }
 
-  angular.module('newCustomCrmApp.admin')
-    .controller('AdminController', AdminController);
-})();
+}
+
+angular.module('newCustomCrmApp.admin')
+  .controller('AdminController', AdminController);

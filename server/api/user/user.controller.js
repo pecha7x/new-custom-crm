@@ -81,7 +81,7 @@ export function show(req, res, next) {
  * restriction: 'admin'
  */
 export function destroy(req, res) {
-  return User.destroy({ _id: req.params.id })
+  return User.destroy({where: { _id: req.params.id }})
     .then(function() {
       res.status(204).end();
     })

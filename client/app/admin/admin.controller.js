@@ -1,46 +1,24 @@
 'use strict';
 
 class AdminController {
-  constructor(User, $http) {
-    // Use the User $resource to fetch all users
+  constructor(User, $http, Modal, AdminUser) {
     this.users = User.query();
     this.$http = $http;
-  }
 
-  delete(user) {
-  //  user.$remove();
-    this.users.splice(this.users.indexOf(user), 1);
-    this.$http.delete('/api/users/'+user._id, user.role, {user});
-  }
+    this.delete = Modal.confirm.delete(user => {
+      this.users.splice(this.users.indexOf(user), 1);
+      AdminUser.delete(user._id);
+    });
 
-  create(form){
-    this.submitted = true;
-    
-    if (form.$valid) {
-      this.$http.post('/api/users', {
-        name: form.name.$$lastCommittedViewValue,
-        email: form.email.$$lastCommittedViewValue,
-        password: form.password.$$lastCommittedViewValue
-      })
-      .then(() => {
-          // Account created, redirect to home
-          this.users.push({ name: form.name.$$lastCommittedViewValue,
-                            email: form.email.$$lastCommittedViewValue
-          });
-      })
-      .catch(err => {
-          err = err.data;
-          this.errors = {};
+    this.create = function(form) {
+      AdminUser.create(form, this.users);
+      //this.users = {};
+      //console.log(this.users);
+      //form.$setPristine();
+      //console.log(form);
+    };
 
-          // Update validity of form fields that match the sequelize errors
-          if (err.name) {
-            angular.forEach(err.fields, field => {
-              form[field].$setValidity('mongoose', false);
-              this.errors[field] = err.message;
-            });
-          }
-      });
-    }
+
   }
 
 }

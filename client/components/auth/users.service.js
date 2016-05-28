@@ -1,12 +1,13 @@
 'use strict';
 
 (function() {
-	
+
     function AdminUserService($http) {
 		return {
 			delete: function (id) {
 				return $http.delete('/api/users/' + id);
 			},
+
 			create: function(form, users){
 				var userParams = {
 					name: form.name.$$lastCommittedViewValue,
@@ -20,9 +21,9 @@
 							password: userParams.password
 						})
 						.then(() => {
-							users.push({name: userParams.name,
-													email: userParams.email
-							});
+							users.push({name: userParams.name, email: userParams.email});
+
+							return true;
 						})
 						.catch(err => {
 							err = err.data;
@@ -33,8 +34,16 @@
 									this.errors[field] = err.message;
 								});
 							}
+
+							return false;
 						});
 				}
+			},
+
+			clearCreateForm: function(form, model){
+				form.$setPristine();
+				form.$setUntouched();
+				for(var i in model) { model[i] = ""}
 			}
 		};
 	}

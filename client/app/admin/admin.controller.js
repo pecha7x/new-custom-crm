@@ -10,17 +10,12 @@ class AdminController {
       AdminUser.delete(user._id);
     });
 
-    this.create = function(form) {
-      AdminUser.create(form, this.users);
-      //this.users = {};
-      //console.log(this.users);
-      //form.$setPristine();
-      //console.log(form);
+    this.create = function(form, user) {
+      if (AdminUser.create(form, this.users)) {
+        AdminUser.clearCreateForm(form, user);
+      }
     };
-
-
   }
-
 }
 
 angular.module('newCustomCrmApp.admin')

@@ -10,8 +10,8 @@
     </li>
   </ul>
 
-  <form class="form" name="form" ng-submit="admin.create(form)" novalidate>
-        
+  <form class="form" name="form" ng-submit="admin.create(form, vm.user)" novalidate>
+
     <div class="form-group" ng-class="{ 'has-success': form.name.$valid && form.$submitted,
                                         'has-error': form.name.$invalid && form.$submitted }">
       <label>Name</label>

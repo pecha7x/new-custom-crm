@@ -9,13 +9,14 @@
 			},
 
 			create: function(form, users){
-				var userParams = {
-					name: form.name.$$lastCommittedViewValue,
-					email: form.email.$$lastCommittedViewValue,
-					password: form.password.$$lastCommittedViewValue
-				};
 				if (form.$valid) {
-					return $http.post('/api/users', {
+					var userParams = {
+						name: form.name.$$lastCommittedViewValue,
+						email: form.email.$$lastCommittedViewValue,
+						password: form.password.$$lastCommittedViewValue
+					};
+
+					return $http.post('/api/users/new_user', {
 							name: userParams.name,
 							email: userParams.email,
 							password: userParams.password

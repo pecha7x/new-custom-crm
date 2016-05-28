@@ -57,6 +57,20 @@ export function create(req, res, next) {
 }
 
 /**
+ * Creates a new user without sign in
+ */
+export function create_user(req, res, next) {
+  var newUser = User.build(req.body);
+  newUser.setDataValue('provider', 'local');
+  newUser.setDataValue('role', 'user');
+  return newUser.save()
+      .then(user => {
+        res.status(200).json(user);
+      })
+      .catch(validationError(res));
+}
+
+/**
  * Get a single user
  */
 export function show(req, res, next) {

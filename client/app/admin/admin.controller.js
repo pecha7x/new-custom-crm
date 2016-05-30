@@ -11,8 +11,9 @@ class AdminController {
     });
 
     this.create = function(form, user) {
-      if (AdminUser.create(form, this.users)) {
-        AdminUser.clearCreateForm(form, user);
+      if (form.$valid) {
+        this.errors ={};
+        AdminUser.create(form, this.users, this.errors, user);
       }
     };
   }

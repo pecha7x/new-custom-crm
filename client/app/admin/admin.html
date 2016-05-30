@@ -6,7 +6,7 @@
 	        <strong>{{user.name}}</strong><br>
 	        <span class="text-muted">{{user.email}}</span>
 	    </div>
-        <a ng-click="admin.delete(user.name, user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+        <a ng-click="admin.delete(user.name, user)" class="trash"><span ng-class="{'fa fa-trash fa-2x': user.role!='admin'}"></span></a>
     </li>
   </ul>
 
@@ -37,7 +37,7 @@
         What's your email address?
       </p>
       <p class="help-block" ng-show="form.email.$error.mongoose">
-        {{ vm.errors.email }}
+        {{ admin.errors.email }}
       </p>
     </div>
 
@@ -54,7 +54,7 @@
         Password must be at least 3 characters.
       </p>
       <p class="help-block" ng-show="form.password.$error.mongoose">
-        {{ vm.errors.password }}
+        {{ admin.errors.password }}
       </p>
     </div>
 

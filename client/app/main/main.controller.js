@@ -2,9 +2,10 @@
 
 class MainController {
 
-  constructor($http) {
+  constructor($http, Auth) {
     this.$http = $http;
     this.awesomeThings = [];
+    this.isAdmin = Auth.isAdmin;
   }
 
   $onInit() {
@@ -25,6 +26,7 @@ class MainController {
 
   deleteThing(thing) {
     this.$http.delete('/api/things/' + thing._id);
+    this.awesomeThings.splice(this.awesomeThings.indexOf(thing), 1);
   }
 }
 

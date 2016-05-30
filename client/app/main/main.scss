@@ -13,6 +13,20 @@
   letter-spacing: -1px;
 }
 
+.features {
+  ul {
+    li{
+      .thing {
+        margin-top: 5px;
+      }
+      a{
+        float: left;
+      }
+    }
+  }
+}
+
+
 .hero-unit {
   position: relative;
   padding: 30px 15px;

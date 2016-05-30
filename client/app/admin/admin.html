@@ -1,16 +1,18 @@
 <div class="container">
-  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-  <ul class="list-group user-list">
-    <li class="list-group-item" ng-repeat="user in admin.users">
-	    <div class="user-info">
-	        <strong>{{user.name}}</strong><br>
-	        <span class="text-muted">{{user.email}}</span>
-	    </div>
-        <a ng-click="admin.delete(user.name, user)" class="trash"><span ng-class="{'fa fa-trash fa-2x': user.role!='admin'}"></span></a>
-    </li>
-  </ul>
-
-  <form class="form" name="form" ng-submit="admin.create(form, vm.user)" novalidate>
+  <div class="row">
+    <p class="col-md-6 col-md-offset-3">The delete user and user index api routes are restricted to users with the 'admin' role.</p>
+    <ul class="list-group user-list col-md-6 col-md-offset-3">
+      <li class="list-group-item" ng-repeat="user in admin.users">
+          <div class="user-info">
+              <strong>{{user.name}}</strong><br>
+              <span class="text-muted">{{user.email}}</span>
+          </div>
+          <a ng-click="admin.delete(user.name, user)" class="trash"><span ng-class="{'fa fa-trash fa-2x': user.role!='admin'}"></span></a>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <form class="form col-md-6 col-md-offset-3" name="form" ng-submit="admin.create(form, vm.user)" novalidate>
 
     <div class="form-group" ng-class="{ 'has-success': form.name.$valid && form.$submitted,
                                         'has-error': form.name.$invalid && form.$submitted }">
@@ -71,11 +73,11 @@
     </div>
 
     <div>
-      <button class="btn btn-lg btn-success" type="submit">
+      <button class="btn btn-lg btn-success col-md-3 col-md-offset-4" type="submit">
         Add User
       </button>
     </div>
 
   </form>
-
+  </div>
 </div>

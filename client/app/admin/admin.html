@@ -30,18 +30,20 @@
         </tr>
       </tbody>
     </table>
-    <ul class="pagination pagination-sm">
-      <li ng-class="{active:0}"><a href="#" ng-click="admin.firstPage()">First</a>
+    <div class="pagination pagination-sm">
+      <ul class="pagination ">
 
-      </li>
-      <li ng-repeat="n in admin.range(admin.items())"> <a href="#" ng-click="admin.setPage(n)" ng-bind="n">1</a>
+        <li ng-class="{active:0}"><a href="#" ng-click="admin.prevPage(admin.page)">Prev</a>
+        </li>
+        
+        <li class="{{admin.classes[n-1]}}" ng-repeat="n in admin.range(admin.items())"> <a href="#" ng-click="admin.setPage(n-1)" ng-bind="n"></a>
+        </li>
 
-      </li>
-      <li><a href="#" ng-click="admin.lastPage()">Last</a>
+        <li><a href="#" ng-click="admin.nextPage(admin.page)">Next</a>
+        </li>
 
-      </li>
-    </ul>
-
+      </ul>
+    </div>
   </div>
   <div class="row">
     <form class="form col-md-6 col-md-offset-3" name="form" ng-submit="admin.create(form, vm.user)" novalidate>

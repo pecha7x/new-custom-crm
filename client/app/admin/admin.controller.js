@@ -9,6 +9,8 @@ class AdminController {
     this.Header = ['', ''];
     this.currentPage = 0;
     var pageSize = 3;
+    this.page = 0;
+    this.classes =[];
 
     this.delete = Modal.confirm.delete(user => {
       this.users.splice(this.users.indexOf(user), 1);
@@ -41,20 +43,41 @@ class AdminController {
       this.pagination();
     }
 
-    this.firstPage = function () {
-      this.currentPage = 0;
+    this.prevPage = function (n) {
+      this.classes[this.page] = '';
+      if(n == 0){
+        this.currentPage = n;
+        this.page = n;
+        this.classes[n] = 'active';
+      } else {
+        this.currentPage = n-1;
+        this.page = n-1;
+        this.classes[n-1] = 'active';
+      }
     }
 
     this.setPage = function (n) {
+      this.classes[this.page] = '';
+      this.page = n;
       this.currentPage = n;
+      this.classes[n] = 'active';
     }
-    this.lastPage = function () {
-      this.currentPage = this.ItemsByPage.length - 1;
+    this.nextPage = function (n) {
+      this.classes[this.page]='';
+      if(this.ItemsByPage.length-1 == n) {
+        this.currentPage = n;
+        this.page = n;
+        this.classes[n] = 'active';
+      } else {
+        this.currentPage = n+1;
+        this.page = n+1;
+        this.classes[n+1] = 'active';
+      }
     }
 
     this.items = function(){
       this.ItemsByPage = filteredList.paged(this.users, pageSize);
-      return this.ItemsByPage.length;
+      return this.ItemsByPage.length+1;
     }
 
     this.pagination = function() {
@@ -64,7 +87,7 @@ class AdminController {
     this.range = function (total) {
       var ret = [];
       for (var i = 0; i < total; i++) {
-        if (i != 0 && i != total - 1) {
+        if (i != 0 ) {
           ret.push(i);
         }
       }

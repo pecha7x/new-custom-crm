@@ -2,15 +2,16 @@
 
 class AdminController {
   constructor(User, $http, Modal, AdminUser, $filter, filteredList) {
+    this.searchUsers = User.query();
     this.users = User.query();
     this.$http = $http;
     this.filter = $filter('orderBy');
     this.filtered = filteredList;
-    this.Header = ['', ''];
+    this.column = null;
+    this.iconName = null;
     this.currentPage = 0;
     var pageSize = 3;
-    this.page = 0;
-    this.classes =[];
+    this.searchText = '';
 
     this.delete = Modal.confirm.delete(user => {
       this.users.splice(this.users.indexOf(user), 1);
@@ -24,58 +25,28 @@ class AdminController {
       }
     };
 
-    this.sort = function (sortBy) {
-      var iconName;
-      this.reverse = !this.reverse;
-      this.column = sortBy;
-      this.users = this.filter(this.users, this.column, this.reverse);
-      if (this.reverse) {
-        iconName = 'glyphicon glyphicon-chevron-up';
-      } else {
-        iconName = 'glyphicon glyphicon-chevron-down';
-      }
-      if (sortBy === 'name') {
-
-        this.Header[0] = iconName;
-      } else {
-        this.Header[1] = iconName;
+    this.sort = function (event) {
+      this.column = event.originalEvent.path[0].id;
+      if(this.column){
+        this.reverse = !this.reverse;
+        this.users = this.filter(this.users, this.column, this.reverse);
+        this.iconName = 'glyphicon glyphicon-chevron-' + (this.reverse ? 'up' : 'down');
       }
       this.pagination();
     }
 
-    this.prevPage = function (n) {
-      this.classes[this.page] = '';
-      if(n == 0){
-        this.currentPage = n;
-        this.page = n;
-        this.classes[n] = 'active';
-      } else {
-        this.currentPage = n-1;
-        this.page = n-1;
-        this.classes[n-1] = 'active';
-      }
+    this.firstPage = function () {
+      this.currentPage = 0;
     }
 
     this.setPage = function (n) {
-      this.classes[this.page] = '';
-      this.page = n;
       this.currentPage = n;
-      this.classes[n] = 'active';
     }
-    this.nextPage = function (n) {
-      this.classes[this.page]='';
-      if(this.ItemsByPage.length-1 == n) {
-        this.currentPage = n;
-        this.page = n;
-        this.classes[n] = 'active';
-      } else {
-        this.currentPage = n+1;
-        this.page = n+1;
-        this.classes[n+1] = 'active';
-      }
+    this.lastPage = function () {
+      this.currentPage = this.ItemsByPage.length-1;
     }
 
-    this.items = function(){
+    this.allPages = function(){
       this.ItemsByPage = filteredList.paged(this.users, pageSize);
       return this.ItemsByPage.length+1;
     }
@@ -84,12 +55,21 @@ class AdminController {
       this.ItemsByPage = filteredList.paged(this.users, pageSize);
     }
 
+    this.search = function(){
+      console.log(this.users);
+      this.users = (this.searchText) ? filteredList.searched(this.searchUsers, this.searchText): User.query();
+      console.log(this.users);
+
+      this.setPage(0);
+      this.pagination();
+
+    }
+
+
     this.range = function (total) {
       var ret = [];
-      for (var i = 0; i < total; i++) {
-        if (i != 0 ) {
+      for (var i = 1; i < total; i++) {
           ret.push(i);
-        }
       }
       return ret;
     }

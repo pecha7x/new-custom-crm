@@ -15,7 +15,15 @@
           }
         }
         return retVal;
+      },
+
+      searched: function (valLists,toSearch) {
+        return _.filter(valLists,
+          function (i) {
+            return i.name.toLowerCase().indexOf(toSearch.toLowerCase()) > -1;
+          });
       }
+
     };
   }
 

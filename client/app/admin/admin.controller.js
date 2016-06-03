@@ -56,12 +56,10 @@ class AdminController {
     }
 
     this.search = function(){
-      console.log(this.users);
       this.users = (this.searchText) ? filteredList.searched(this.searchUsers, this.searchText): User.query();
-      console.log(this.users);
-
       this.setPage(0);
       this.pagination();
+      this.column = this.column ? null: this.column;
 
     }
 

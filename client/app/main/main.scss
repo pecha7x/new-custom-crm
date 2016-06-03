@@ -2,17 +2,6 @@
   margin: 20px 0;
 }
 
-#banner {
-  border-bottom: none;
-  margin-top: -20px;
-}
-
-#banner h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
 .features {
   ul {
     li{
@@ -26,16 +15,125 @@
   }
 }
 
-
-.hero-unit {
-  position: relative;
-  padding: 30px 15px;
+.header-coffee {
   color: #F5F5F5;
   text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background: #4393B9;
+  background: #ff9b23;
+  margin-top: -20;
+}
+
+.body-coffee {
+  background: #f8f6f1;
+}
+
+.footer-coffee {
+  background: #f3aa4d;
 }
 
 .navbar-text {
   margin-left: 15px;
+}
+
+#header-img {
+margin-left: 200px;
+}
+
+.socials {
+  float: right;
+  width: 97px;
+  height: 50px;
+  background: url(/assets/images/socials.png) 0 0;
+}
+
+.subscribe {
+  float: right;
+  width: 158px;
+  height: 50px;
+  background: url(/assets/images/subscribe.png) 0 0;
+}
+
+#sbubscribe-ico {
+  margin-top: 10px;
+  margin-left: -5px;
+}
+
+.recall {
+  position: absolute;
+  border-radius: 5px;
+  margin-left: 480px;
+  margin-top: 20px;
+  padding: 5px;
+  height: 70px;
+  width: 250px;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+}
+.comment {
+  margin-top: 0px;
+  color: red;
+}
+.author {
+  margin-left: 80px;
+  margin-top: -15px;
+  color: #a94442;
+
+}
+#stars {
+  margin-top: 20px;
+  width: 60px;
+  height: 20px;
+  background: url(/assets/images/star.png) 0 0;
+}
+
+#logo {
+  float: left;
+  margin-left: 150px;
+}
+
+.slider-arr-left {
+  width: 61px;
+  height: 127px;
+  background: url(/assets/images/slider-arr.png) 0 0;
+  border: 0;
+  float: left;
+  margin-left: 116px;
+  margin-top: 155px;
+}
+
+.slider-arr-right {
+  width: 61px;
+  height: 127px;
+  background: url(/assets/images/slider-arr.png) 61px 0;
+  border: 0;
+  float: right;
+  margin-right: -7px;
+  margin-top: 155px;
+}
+
+.slider {
+  position: relative;
+  margin-left: 100px;
+  margin-top: 5px;
+  margin-bottom: -70px;
+  width: 1062px;
+  height: 461px;
+  background: url(/assets/images/slider.png) 0 0;
+}
+
+.navigation {
+  position: absolute;
+  margin-left: 33px;
+  margin-top: -10px;
+  width: 1004px;
+  height: 99px;
+  background: url(/assets/images/navigation.png) 0 0;
+}
+#red-btn {
+  margin-top: 350px;
+  border: 0;
+  width: 154px;
+  height: 58px;
+  background: url(/assets/images/red-btn.png) 0 0;
+  color: white;
 }

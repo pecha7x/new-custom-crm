@@ -15,16 +15,24 @@
   }
 }
 
+.hero-unit {
+   background: white;
+}
+
 .header-coffee {
   color: #F5F5F5;
   text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   background: #ff9b23;
-  margin-top: -20;
+  margin-top: -20px;
+  margin-bottom: -75px;
 }
 
 .body-coffee {
-  background: #f8f6f1;
+  border-top: 5px solid transparent;
+  border-color: white;
+  padding-top: 70px;
+  background: #f7f5f0;
 }
 
 .footer-coffee {
@@ -59,9 +67,7 @@ margin-left: 200px;
 }
 
 .recall {
-  position: absolute;
   border-radius: 5px;
-  margin-left: 480px;
   margin-top: 20px;
   padding: 5px;
   height: 70px;
@@ -73,6 +79,11 @@ margin-left: 200px;
   margin-top: 0px;
   color: red;
 }
+
+h4 {
+  color: darkred;
+}
+
 .author {
   margin-left: 80px;
   margin-top: -15px;
@@ -92,48 +103,80 @@ margin-left: 200px;
 }
 
 .slider-arr-left {
+  float: left;
   width: 61px;
   height: 127px;
   background: url(/assets/images/slider-arr.png) 0 0;
   border: 0;
-  float: left;
-  margin-left: 116px;
   margin-top: 155px;
 }
 
 .slider-arr-right {
+  float: right;
   width: 61px;
   height: 127px;
   background: url(/assets/images/slider-arr.png) 61px 0;
   border: 0;
-  float: right;
-  margin-right: -7px;
   margin-top: 155px;
 }
 
 .slider {
-  position: relative;
-  margin-left: 100px;
-  margin-top: 5px;
-  margin-bottom: -70px;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -90px;
   width: 1062px;
   height: 461px;
-  background: url(/assets/images/slider.png) 0 0;
+  background: url(/assets/images/slider.png);
 }
 
 .navigation {
-  position: absolute;
-  margin-left: 33px;
+  z-index: 1;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: -10px;
   width: 1004px;
   height: 99px;
   background: url(/assets/images/navigation.png) 0 0;
 }
 #red-btn {
-  margin-top: 350px;
+  margin-top: 50px;
   border: 0;
   width: 154px;
   height: 58px;
   background: url(/assets/images/red-btn.png) 0 0;
   color: white;
+}
+.cols-img {
+  float: left;
+  margin-right: 10px;
+}
+.link {
+  color: #ff9b23;
+  text-decoration: underline;
+}
+li {
+  color: #ff9b23;
+}
+.separator{
+  margin-top: 20px;
+}
+.navigated-link {
+  color: white;
+  margin-right: 20px;
+}
+.navigated {
+  float: left;
+  margin-right: -20px;
+}
+
+.nav-border {
+  margin-top: 11px;
+  margin-left: 20px;
+}
+
+.last-link-navigated {
+  color: white;
+  margin-left: 20px;
 }
